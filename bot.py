@@ -65,11 +65,7 @@ def parse_join(message):
         conversation_channel = conversation["channel"]["id"]
         logging.debug(conversation_channel)
 
-        data = {
-                'token': TOKEN,
-                'channel': conversation_channel,
-                'text': MESSAGE,
-                "blocks": [
+        blocks = [
                 {
                   "type": "section",
                   "text": {
@@ -95,7 +91,13 @@ def parse_join(message):
                     "action_id": "button-action"
                   }
                 }
-                ],
+                ]
+        
+        data = {
+                'token': TOKEN,
+                'channel': conversation_channel,
+                'text': MESSAGE,
+                "blocks": json.dumps(blocks),
                 'parse': 'full',
                 'as_user': 'true',
                 }
