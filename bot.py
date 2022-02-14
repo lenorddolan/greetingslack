@@ -17,7 +17,9 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 ###VARIABLES THAT YOU NEED TO SET MANUALLY IF NOT ON HEROKU#####
 try:
+        MESSAGE_HEADER = os.environ.get('MSG_HEADER')
         MESSAGE = os.environ.get('WELCOME_MESSAGE')
+        MESSAGE_LINK = os.environ.get('MSG_LINK')
         TOKEN = os.environ.get('SLACK_TOKEN')
         CHANNEL_TOKEN = os.environ.get('CHANNEL_TOKEN')
         UNFURL = os.environ.get('UNFURL_LINKS')
@@ -25,6 +27,8 @@ try:
         DEBUG_CHANNEL_ID = os.environ.get('DEBUG_CHANNEL_ID', False)
 except:
         MESSAGE = 'Manually set the Message if youre not running through heroku or have not set vars in ENV'
+        MESSAGE_HEADER = 'Manually set the Message Header if youre not running through heroku or have not set vars in ENV'
+        MESSAGE_LINK = 'https://example.com'
         TOKEN = 'Manually set the API Token if youre not running through heroku or have not set vars in ENV'
         UNFURL = 'FALSE'
 ###############################################################
@@ -65,6 +69,34 @@ def parse_join(message):
                 'token': TOKEN,
                 'channel': conversation_channel,
                 'text': MESSAGE,
+                "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": MESSAGE_HEADER
+                  }
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": MESSAGE
+                  },
+                  "accessory": {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "Review",
+                      "emoji": true
+                    },
+                    "style": "primary",
+                    "value": "click_me_123",
+                    "url": MESSAGE_LINK,
+                    "action_id": "button-action"
+                  }
+                }
+                ],
                 'parse': 'full',
                 'as_user': 'true',
                 }
