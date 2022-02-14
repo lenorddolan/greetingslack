@@ -21,6 +21,14 @@
     "WELCOME_MESSAGE": {
       "description": "Your Welcome message string",
       "value": "A personalized welcome msg that is broadcasted to your Slack Users"
+    },
+    "MSG_HEADER": {
+      "description": "Your Welcome message header string",
+      "value": "Hello and welcome to our new Slack Workspace!"
+    },
+    "MSG_LINK": {
+      "description": "Link to embed in the Welcome message",
+      "value": "https://example.com"
     }
   }
 }
