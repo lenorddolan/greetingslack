@@ -87,8 +87,7 @@ def parse_join(message):
                     "type": "button",
                     "text": {
                       "type": "plain_text",
-                      "text": "Review",
-                      "emoji": true
+                      "text": "Review"
                     },
                     "style": "primary",
                     "value": "click_me_123",
